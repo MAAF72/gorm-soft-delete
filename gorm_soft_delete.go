@@ -180,7 +180,7 @@ func (sd SoftDeleteDeleteClause) ModifyStatement(stmt *gorm.Statement) {
 		}
 
 		if sd.ActorField != nil {
-			if actorName := stmt.Context.Value("GORM_CTX_DELETED_BY"); actorName != nil {
+			if actorName := stmt.Context.Value(GORM_CTX_DELETED_BY); actorName != nil {
 				clauseSet = append(clauseSet, clause.Assignment{Column: clause.Column{Name: sd.ActorField.DBName}, Value: actorName})
 				stmt.SetColumn(sd.ActorField.DBName, actorName, true)
 			}
